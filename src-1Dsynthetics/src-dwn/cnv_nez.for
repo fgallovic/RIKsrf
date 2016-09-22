@@ -15,7 +15,7 @@ c
 
       integer      nsp,nrp,ncp,ntp,nrtp,icc,ics,if,ic
       real         lat0,lon0
-      parameter   (nsp=1,ncp=100,nrp=150,mm=13,ntp=2**mm,nrtp=nrp*ntp)
+      parameter   (nsp=1,ncp=20,nrp=150,mm=13,ntp=2**mm,nrtp=nrp*ntp)
       parameter   (lon0=-118,lat0=34,stdlat1=33,stdlat2=45)
 
 

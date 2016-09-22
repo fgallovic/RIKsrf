@@ -9,6 +9,4 @@ ifort -openmp -oseissimul seissimul.f90
 python stfspec.py
 python seismogramsspec.py
 gnuplot specplot.gp
-gnuplot sr.gp
 gnuplot timespecplot.gp
-gnuplot slipdistribution.gp

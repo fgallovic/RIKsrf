@@ -26,7 +26,7 @@ causality principle.
 ------------
 
 ###Content of directories:
- - `src` - Source codes.
- - `src-dwn` - Axitra code for Green's function calculations.
+ - `src-RIKsrf` - Source codes of the RIK slip rate generator.
+ - `src-1Dsynthetics` - Calculation of 1D full wavefield synthetics using Axitra for Green's function calculations.
  - `examples` - Several examples for testing the code including graphics (requires Gnuplot).
  - `docs` - Documentation and papers related to the RIK model.

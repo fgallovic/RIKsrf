@@ -2,8 +2,9 @@
 ----------------------------------------------
 
 ####List of available examples:
- - `Napa-apparentSTFs`: Evaluates slip rate functions for the Napa earthquake and apparent source time functions for selected nearfield stations. 
- - `Napa-synthetics`: Evaluates slip rate functions for the Napa earthquake and synthetic seismograms using full-wavefield 1D Green's functions.
+ - `Napa`: Evaluates slip rate functions for the Napa earthquake. The example includes evaluation of apparent source time functions in subdirectory `apparentSTFs`
+ and additional files to calculate full-wavefield seismograms using Axitra in subdirectory `1Dsynthetics`.
+ - More will come.
 
 Good luck!
 

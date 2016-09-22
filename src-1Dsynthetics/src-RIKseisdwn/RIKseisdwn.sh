@@ -1,1 +1,1 @@
-ifort -oRIKseisdwn RIKseisdwn.f90
+ifort -oRIKseisdwn -openmp RIKseisdwn.f90 nr.for filters.for

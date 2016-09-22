@@ -68,7 +68,7 @@
     read(10,*) fc1,fc2
     close(10)
     
-    open(10,file='RIKstf.in',action='read')
+    open(10,file='RIKsrf.in',action='read')
     do i=1,7
       read(10,*)
     enddo
