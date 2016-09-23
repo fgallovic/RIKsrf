@@ -2,7 +2,8 @@
 -----------
 Ruiz Integral Kinematic (RIK) earthquake source model: Slip rate generation and 1D full wavefield synthetics
 
-Suite of code for earthquake strong ground motion simulations using an advanced kinematic source model based on the model of Ruiz et al. (2011). RIKsrf provides slip rates functions on a finely discretized source that result in synthetics with the desired
+Suite of codes for earthquake strong ground motion simulations using an advanced kinematic source model based on the model of Ruiz et al. (2011).
+RIKsrf provides slip rate functions on a finely discretized source that result in synthetics with the desired
 omega-squared spectral decay in full (broadband) frequency range.
 
 ####Main features of the RIK model:
