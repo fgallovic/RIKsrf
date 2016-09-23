@@ -457,7 +457,7 @@
     real*4, allocatable:: hs(:), t_rupt(:)
     REAL*8, allocatable:: xintrpl(:),tintrpl(:),yintrpl(:),xspln(:),yspln(:)
 
-    write(*,*)'Preparing rupture time variations: ',vars
+    write(*,*)'Preparing rupture time variations with rupture velocity sigma ',vars
 
 !Schvalne dd, protoze se diskretizuje na ridsi siti a pak se interpoluje
     M=2**int(log(dble(NX))/log(2.d0)+1.d0)
@@ -475,7 +475,6 @@
     endif
     FNN=N/2+1;FNM=M/2+1
 
-WRITE(*,*)M,N
     ALLOCATE(speq1(N),AC(M/2,N),speqd(N),A(M,N),AA(M,N),C(M,N),D(NX,NY),D1(M,NY))
     ALLOCATE(hs(M*N),t_rupt(M*N))
     ALLOCATE(xintrpl(M),xspln(M),yintrpl(N),tintrpl(N),yspln(N))
@@ -547,7 +546,6 @@ WRITE(*,*)M,N
 
 !Writing 2D rupture velocity distribution
     OPEN(102,FILE='ruptvelgen.txt')
-    write(*,*)int(L/dd),int(W/dd)
     do j=1,int(W/dd)
       do i=1,int(L/dd)
         write(102,'(3E14.6)') real(i-1)*dd+.5*dd,real(j-1)*dd+.5*dd,A(i,j)
@@ -570,8 +568,8 @@ write(333,'(E13.5)')A
     xg=epicx/dd+1.
     zg=epicy/dd+1.
 
-    iostat = Time_2d(hs, t_rupt, nnx, nnz, xg, zg, eps_init, 0);write(*,*)iostat
-write(*,*)2
+    iostat = Time_2d(hs, t_rupt, nnx, nnz, xg, zg, eps_init, 0)
+
 !PREINTERPOLOVANI DO VYSTUPNI DISKRETIZACE:
     do j=1,N
       yintrpl(j)=dd*(j-1)+dd/2.d0

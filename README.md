@@ -30,3 +30,4 @@ causality principle.
  - `src-1Dsynthetics` - Calculation of 1D full wavefield synthetics using Axitra for Green's function calculations.
  - `examples` - Several examples for testing the code including graphics (requires Gnuplot).
  - `docs` - Documentation and papers related to the RIK model.
+ - `src-graphics` - Codes for generating graphics such as slip rate snapshots (requires Gnuplot).

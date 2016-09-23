@@ -3,7 +3,7 @@ No. of computed frequencies  - Napa up to ~5Hz
 Length of seismograms (in sec)
 102.4 8.  23. 48.
 Artificial time shift, number of segments
-20.   1
+20.  1
 No. of recievers
 10  0
 No. of Greens computed along strike (dip), discretization along strike (dip)
@@ -19,7 +19,7 @@ Length and width of the fault
 Position of reference point on the fault
 12500.   0.
 No. of output time steps, no. of RIK time steps
-4096   850
+4096   480
 Vr - not used here
 3000
 fc1     fc2

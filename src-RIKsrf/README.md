@@ -8,3 +8,5 @@ Appended script `compile.sh` shows how the codes is to be compiled.
 
 Credits:
  - Subroutines from Numerical recipes (FFT, random numbers, spline interpolation).
+ - Eikonal sover `Time_2d.c` by Podvin, P., Lecomte, I. (1991), Finite difference computation of traveltimes in very contrasted
+velocity models: a massively parallel approach and its associated tool, Geophys. J. Intern. 105, 271-284.

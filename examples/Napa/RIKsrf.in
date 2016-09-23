@@ -14,7 +14,7 @@
 # Pulse width (ratio between L0 and L), multiplicative factor for rupture velocity on subsources, aparam
 .2 1. .5
 #SUBMIN SUBMAX
-2 100
+2 50
 #PDF for subsource distribution (1: uniform, 2: Gaussian - provide location and width, 3: read from file - specify discretization and filename)
 3
 20 16  Napaslipfrominversion.dat
