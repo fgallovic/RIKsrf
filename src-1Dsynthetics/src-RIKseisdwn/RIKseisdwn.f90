@@ -15,7 +15,7 @@
     USE crustaldat
     IMPLICIT NONE
     REAL,PARAMETER:: PI=3.1415926535d0
-    REAL,PARAMETER:: rotateto=155.*(PI/180.)
+    REAL,PARAMETER:: rotateto=0.*(PI/180.)
     INTEGER nfmax,np,npRIK,NL,NW,NR
     INTEGER NLgf,NWgf
     REAL*8 T,artifDT,leng,widt,epicL,epicW,fc1,fc2
