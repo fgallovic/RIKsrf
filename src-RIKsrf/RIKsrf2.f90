@@ -26,7 +26,7 @@
     INTEGER NL,NW
     REAL mufix
 !PDF for subsource position
-    INTEGER,PARAMETER:: pdfNL=200,pdfNW=100
+    INTEGER,PARAMETER:: pdfNL=2000,pdfNW=1000
     REAL,ALLOCATABLE:: pdf2D(:,:),cpdf2D(:,:)
     REAL pdfDL,pdfDW,pdfGaussL,pdfGaussW,pdfGaussS
     REAL,ALLOCATABLE:: ruptimegen(:)
@@ -138,6 +138,7 @@
       enddo
       read(232,*)
     enddo
+    close(232)
 
 !Reading location of the slip rate points
     ALLOCATE(SRl(NSR),SRw(NSR),SRelem(NSR),SRmu(NSR),SRslip(NSR),SRmoment(NSR),SRstressdrop(NSR))
@@ -555,7 +556,6 @@
     close(102)
 
 !Translating rupture velocities to rupture times
-write(333,'(E13.5)')A
     do j = 1,N
       do i = 1,M
         ipoint = i + (j-1) * M
@@ -599,10 +599,11 @@ write(333,'(E13.5)')A
     OPEN(101,FILE='ruptimegen.txt')
     do j=1,NY
       do i=1,NX
-        write(101,'(3E13.6)') real(i-1)*dxout+.5*dxout,real(j-1)*dyout+.5*dyout,D(i,j)
+        write(101,'(3E14.6)') real(i-1)*dxout+.5*dxout,real(j-1)*dyout+.5*dyout,D(i,j)
       enddo
       write(101,*)
     enddo
+    close(101)
 
 !Forward Fourier transform
 
