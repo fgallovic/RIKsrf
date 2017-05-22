@@ -13,7 +13,7 @@ set origin 0,.5
 set key at screen 0.5,0.05
 set xlabel 'Time (s)'
 set ylabel 'Moment rate (*10^{18} Nms^{-1})'
-plot [0.:8.] 'stf.dat' u ($1+0.0):($2/1.e18) notitle w l lt 1 lw 2
+plot [0.:] 'stf.dat' u ($1+0.0):($2/1.e18) notitle w l lt 1 lw 2
 
 set origin 0,.05
 set key top right vertical inside

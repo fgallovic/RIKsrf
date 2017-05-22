@@ -21,7 +21,7 @@
 # Random seed for slip (idum1) and rupture velocity variations (idum2)
 -1345  -13456
 # Slip rate time step, number of timesteps
-0.025   850
+0.025   480
 # Rupture velocities (number of layers nlayers; if nlayers>0, follow with a list of layer positions and rupture velocities (from bottom to top); otherwise, vr are evaluated from crustal.dat assuming constant vp/vs specified below)
 0
 0.8
