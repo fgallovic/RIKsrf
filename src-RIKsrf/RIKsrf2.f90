@@ -28,7 +28,7 @@
 !PDF for subsource position
     INTEGER,PARAMETER:: pdfNL=2000,pdfNW=1000
     REAL,ALLOCATABLE:: pdf2D(:,:),cpdf2D(:,:)
-    REAL pdfDL,pdfDW,pdfGaussL,pdfGaussW,pdfGaussS
+    REAL pdfDL,pdfDW,pdfGaussL,pdfGaussW,pdfGaussSL,pdfGaussSW
     REAL,ALLOCATABLE:: ruptimegen(:)
     CHARACTER*256 filename
     INTEGER ml(2),pdfOption,fileNL,fileNW
@@ -78,7 +78,7 @@
     read(101,*)SUBMIN,SUBMAX
     read(101,*)
     read(101,*)pdfOption
-    if(pdfOption==2)read(101,*)pdfGaussL,pdfGaussW,pdfGaussS
+    if(pdfOption==2)read(101,*)pdfGaussL,pdfGaussW,pdfGaussSL,pdfGaussSW
     if(pdfOption==3)read(101,*)fileNL,fileNW,filename
     read(101,*)
     read(101,*)idum1,idum2
@@ -121,7 +121,7 @@
 !Preparing PDF for distribution of subsources
     write(*,*)'Preparing PDF for subsource distribution...'
     ALLOCATE(pdf2D(pdfNL,pdfNW),cpdf2D(pdfNL,pdfNW))
-    CALL fillpdf(pdfNL,pdfNW,LF,WF,L,W,smL,smW,pdf2D,cpdf2D,pdfOption,filename,fileNL,fileNW,pdfGaussL,pdfGaussW,pdfGaussS)
+    CALL fillpdf(pdfNL,pdfNW,LF,WF,L,W,smL,smW,pdf2D,cpdf2D,pdfOption,filename,fileNL,fileNW,pdfGaussL,pdfGaussW,pdfGaussSL,pdfGaussSW)
     pdfDL=LF/real(pdfNL)
     pdfDW=WF/real(pdfNW)
     write(*,*)'... done.'
@@ -260,20 +260,21 @@
         dumL=dumr*cos(dumphi);dumW=dumr*sin(dumphi)
         SUBnuclL(k)=dumL+SUBposL(k)
         SUBnuclW(k)=dumW+SUBposW(k)
-         SUBruptime(k)=ruptimegen(int(SUBnuclW(k)/W*float(NW-1))*NL+int(SUBnuclL(k)/L*float(NL-1))+1)
-        SUBmvr(k)=SUBmvr(k)*vrsubfact
         SUBrisetime(k)=aparam*2.*SUBsize(k)/SUBmvr(k)
       endif
+      SUBruptime(k)=ruptimegen(int(SUBposW(k)/W*float(NW-1))*NL+int(SUBposL(k)/L*float(NL-1))+1)
+      SUBmvr(k)=SUBmvr(k)*vrsubfact
     enddo
     write(*,*)'... done.'
 
     open(201,FILE='subsources.dat')
     do k=1,SUBtot
-      write(201,'(10E13.5)')SUBposL(k),SUBposW(k),SUBsize(k),SUBmoment(k),SUBruptime(k),SUBrisetime(SUBtot),SUBmvr(SUBtot)
+      write(201,'(10E13.5)')SUBposL(k),SUBposW(k),SUBsize(k),SUBmoment(k),SUBruptime(k),SUBrisetime(k),SUBmvr(k)
     enddo
     close(201)
     
 !Evaluating slip rates
+  if(NT>0)then
     write(*,*)'Preparing and saving slip rates...'
     allocate(sr(NT),stf(NT))
     open(201,FILE='sr.dat')
@@ -317,15 +318,18 @@
       write(201,*)dt*(i-1),stf(i)
     enddo
     write(*,*)'... done.'
-    
+  else
+    write(*,*)'Only subsource parameters generated.'
+  endif
+  
     END PROGRAM
     
     
-    SUBROUTINE fillpdf(pdfNL,pdfNW,LF,WF,L,W,smL,smW,pdf2D,cpdf2D,pdfOption,filename,fileNL,fileNW,pdfGaussL,pdfGaussW,pdfGaussS)  ! creates pdf and cumulative pdf for subsource distribution
+    SUBROUTINE fillpdf(pdfNL,pdfNW,LF,WF,L,W,smL,smW,pdf2D,cpdf2D,pdfOption,filename,fileNL,fileNW,pdfGaussL,pdfGaussW,pdfGaussSL,pdfGaussSW)  ! creates pdf and cumulative pdf for subsource distribution
     IMPLICIT NONE
     INTEGER pdfNL,pdfNW,pdfOption
     REAL pdf2D(pdfNL,pdfNW),cpdf2D(pdfNL,pdfNW)
-    REAL LF,WF,L,W,smL,smW,pdfGaussL,pdfGaussW,pdfGaussS
+    REAL LF,WF,L,W,smL,smW,pdfGaussL,pdfGaussW,pdfGaussSL,pdfGaussSW
     CHARACTER*256 filename
     INTEGER i,j,k,fileNL,fileNW
     REAL cumul,pdfDL,pdfDW,slipDL,slipDW
@@ -349,7 +353,7 @@
       write(*,*)'Gaussian PDF for subsources'
       do j=pjfrom,pjto
         do i=pifrom,pito
-          pdf2D(i,j)=exp(-.5*((((real(i)-.5)*pdfDL-pdfGaussL)**2+((real(j)-.5)*pdfDL-pdfGaussW)**2)/pdfGaussS**2)**2)
+          pdf2D(i,j)=exp(-.5*(((real(i)-.5)*pdfDL-pdfGaussL)**2/pdfGaussSL**2+((real(j)-.5)*pdfDW-pdfGaussW)**2/pdfGaussSW**2))
         enddo
       enddo
     CASE(3)
