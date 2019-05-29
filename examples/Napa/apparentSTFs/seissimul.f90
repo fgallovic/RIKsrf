@@ -34,7 +34,7 @@
     REAL dum
     INTEGER i,j,k,tshift
     
-    open(101,FILE='RIKstf.in')
+    open(101,FILE='RIKsrf.in')
     read(101,*)
     read(101,*)L, W
     read(101,*)
@@ -109,7 +109,7 @@
     open(201,FILE='sr.dat')
     do i=1,NSR
       do j=1,NT
-        read(201,*)dum,sr(j,i)
+        read(201,*)sr(j,i)
       enddo
       read(201,*)
       read(201,*)
